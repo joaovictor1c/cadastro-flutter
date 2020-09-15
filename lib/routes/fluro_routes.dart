@@ -6,11 +6,13 @@ import 'package:web/views/users_list.dart';
 class FluroRouter {
   static final router = Fluro.Router();
   static Fluro.Handler _userForm = Fluro.Handler(
-      handlerFunc: (BuildContext context, Map<String, dynamic> params) =>
-          UserForm());
+    handlerFunc: (BuildContext context, Map<String, dynamic> params) =>
+        UserForm(),
+  );
   static Fluro.Handler _home = Fluro.Handler(
-      handlerFunc: (BuildContext context, Map<String, dynamic> params) =>
-          UserList());
+    handlerFunc: (BuildContext context, Map<String, dynamic> params) =>
+        UserList(),
+  );
   static void setupRouter() {
     router.define(
       '/',

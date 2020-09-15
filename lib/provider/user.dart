@@ -1,4 +1,5 @@
-import 'package:uuid/uuid.dart';
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
@@ -31,20 +32,35 @@ class Users with ChangeNotifier {
       _items.update(
         user.id,
         (_) => User(
-            id: user.id,
-            nome: user.nome,
-            email: user.email,
-            avatarUrl: user.avatarUrl),
+          id: user.id,
+          name: user.name,
+          email: user.email,
+          avatarUrl: user.avatarUrl,
+          lastName: user.lastName,
+          address: user.address,
+          zipCode: user.zipCode,
+          state: user.state,
+          city: user.city,
+          number: user.number,
+          complement: user.complement,
+        ),
       );
     } else {
-      var id = Uuid().v1();
+      final id = Random().nextInt(100).toString();
       _items.putIfAbsent(
         id,
         () => User(
           id: id,
-          nome: user.nome,
+          name: user.name,
           email: user.email,
           avatarUrl: user.avatarUrl,
+          lastName: user.lastName,
+          address: user.address,
+          zipCode: user.zipCode,
+          state: user.state,
+          city: user.city,
+          number: user.number,
+          complement: user.complement,
         ),
       );
     }
@@ -54,7 +70,7 @@ class Users with ChangeNotifier {
   void remove(User user) {
     if (user != null && user.id != null) {
       _items.remove(user.id);
+      notifyListeners();
     }
-    notifyListeners();
   }
 }
